@@ -1,6 +1,6 @@
 # r4y
 
-A typescript library for spawning child processes.
+A typescript library for managing child processes.
 
 ## How to use it
 
