@@ -1,7 +1,7 @@
 {
   "name": "r4y",
   "version": "0.0.0",
-  "description": "A NodeJS library for spawining child processes",
+  "description": "A NodeJS library for creating child processes",
   "main": "dist/index.js",
   "type": "module",
   "repository": "git@github.com:x71c9/r4y.git",
@@ -26,9 +26,7 @@
     "pretty": "yarn prettier --write \"src/**/*.{js,ts,json}\""
   },
   "lint-staged": {
-    "src/**/*.{js,ts,json}": [
-      "yarn prettier --write"
-    ]
+    "src/**/*.{js,ts,json}": ["yarn prettier --write"]
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
