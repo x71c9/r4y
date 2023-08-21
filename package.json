@@ -1,6 +1,6 @@
 {
   "name": "r4y",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A NodeJS library for managing child processes",
   "main": "dist/index.js",
   "type": "module",
@@ -26,7 +26,9 @@
     "pretty": "yarn prettier --write \"src/**/*.{js,ts,json}\""
   },
   "lint-staged": {
-    "src/**/*.{js,ts,json}": ["yarn prettier --write"]
+    "src/**/*.{js,ts,json}": [
+      "yarn prettier --write"
+    ]
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
