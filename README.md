@@ -6,7 +6,8 @@ A typescript library for spawning child processes.
 
 ```typescript
 import ray from 'r4y';
-await ray.spawn('echo $WHATEVER');
+await ray.execute('echo $WHATEVER');
+await ray.spawn('find . -type f | wc');
 ```
 
 ## Configuration
