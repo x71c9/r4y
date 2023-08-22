@@ -5,7 +5,8 @@
  * @packageDocumentation
  *
  */
-export declare function execute(command: string): Promise<any>;
+type ExecuteOptions = {} & LogOption;
+export declare function execute(command: string, options?: Partial<ExecuteOptions>): Promise<any>;
 type Stdio = 'pipe' | 'overlapped' | 'ignore' | 'inherit';
 type SpawnOption = {
     stdio: Stdio | Stdio[];
@@ -16,5 +17,5 @@ type SpawnOption = {
 type LogOption = {
     spin: boolean;
 };
-export declare function spawn(command: string, options: Partial<SpawnOption>): Promise<unknown>;
+export declare function spawn(command: string, options?: Partial<SpawnOption>): Promise<unknown>;
 export {};

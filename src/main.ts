@@ -10,13 +10,29 @@
 import {promisify} from 'util';
 import cp from 'child_process';
 import ion from 'i0n';
+import * as types from './types/index.js';
+import {config} from './config/config.js';
 
 const exe = promisify(cp.exec);
 
-export async function execute(command: string): Promise<any> {
-  ion.debug(command);
+type ExecuteOptions = {} & LogOption;
+
+export async function execute(
+  command: string,
+  options?: Partial<ExecuteOptions>
+): Promise<any> {
+  if (options && options.spin === true) {
+    ion.spinner.text(command);
+    ion.spinner.start();
+  } else {
+    _use_ion_method(types.METHOD.execute, command);
+  }
   const response = await exe(command);
-  return response.stdout.trim();
+  const trimmed_response = response.stdout.trim();
+  if (options?.spin === true) {
+    ion.spinner.stop();
+  }
+  return trimmed_response;
 }
 
 type Stdio = 'pipe' | 'overlapped' | 'ignore' | 'inherit';
@@ -32,17 +48,17 @@ type LogOption = {
   spin: boolean;
 };
 
-export async function spawn(command: string, options: Partial<SpawnOption>) {
+export async function spawn(command: string, options?: Partial<SpawnOption>) {
   return await new Promise((resolve, reject) => {
     // const id = _generate_unique_id();
-    const spin = options.spin === false ? false : true;
+    const spin = options?.spin === false ? false : true;
     const child = cp.spawn(command, {
-      stdio: options.stdio || 'inherit',
-      shell: options.shell || true,
-      cwd: options.cwd,
-      detached: options.detached,
+      stdio: options?.stdio || 'inherit',
+      shell: options?.shell || true,
+      cwd: options?.cwd,
+      detached: options?.detached,
     });
-    ion.debug(`[${child.pid}] ${command}`);
+    _use_ion_method(types.METHOD.spawn, `[${child.pid}] ${command}`);
     if (child.stdout) {
       child.stdout.setEncoding('utf8');
       child.stdout.on('data', _process_std(options));
@@ -52,6 +68,9 @@ export async function spawn(command: string, options: Partial<SpawnOption>) {
       child.stderr.on('data', _process_std(options));
     }
     child.on('error', (err) => {
+      if (spin) {
+        ion.spinner.stop();
+      }
       ion.fail(err.message);
       ion.error(err);
     });
@@ -97,11 +116,11 @@ export async function spawn(command: string, options: Partial<SpawnOption>) {
   });
 }
 
-function _process_std(options: Partial<SpawnOption>) {
+function _process_std(options?: Partial<SpawnOption>) {
   return (chunk: string) => {
-    if (options.spin) {
+    if (options?.spin) {
       const one_line = _one_line(chunk);
-      ion.spinner.text = one_line;
+      ion.spinner.text(one_line);
       ion.spinner.start();
     } else {
       const splitted_chunk = chunk.split('\n');
@@ -110,7 +129,7 @@ function _process_std(options: Partial<SpawnOption>) {
         if (clean_chunk === '') {
           continue;
         }
-        ion.trace(clean_chunk);
+        _use_ion_method(types.METHOD.spawn, clean_chunk);
       }
     }
   };
@@ -135,3 +154,43 @@ function _clean_chunk(chunk: string): string {
 //   const unique_id = hash.slice(0, 4).toUpperCase();
 //   return unique_id;
 // }
+
+function _use_ion_method(method: types.Method, data: any) {
+  const was_spinning = ion.spinner.is_spinning();
+  if (was_spinning) {
+    ion.spinner.stop();
+  }
+  switch (config[method].log_metod) {
+    case 'trace': {
+      ion.trace(data);
+      break;
+    }
+    case 'debug': {
+      ion.debug(data);
+      break;
+    }
+    case 'info': {
+      ion.info(data);
+      break;
+    }
+    case 'warn': {
+      ion.warn(data);
+      break;
+    }
+    case 'error': {
+      ion.error(data);
+      break;
+    }
+    case 'success': {
+      ion.success(data);
+      break;
+    }
+    case 'fail': {
+      ion.fail(data);
+      break;
+    }
+  }
+  if (was_spinning) {
+    ion.spinner.start();
+  }
+}
