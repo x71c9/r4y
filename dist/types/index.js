@@ -7,7 +7,7 @@
  */
 export const METHOD = {
     execute: 'execute',
-    spawn: 'spawn'
+    spawn: 'spawn',
 };
 export const LOG_METHOD = {
     trace: 'trace',
