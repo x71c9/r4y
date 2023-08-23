@@ -127,10 +127,10 @@ function _clean_chunk(chunk) {
 //   return unique_id;
 // }
 function _use_ion_method(method, data) {
-    const was_spinning = ion.spinner.is_spinning();
-    if (was_spinning) {
-        ion.spinner.stop();
-    }
+    // const was_spinning = ion.spinner.is_spinning();
+    // if (was_spinning) {
+    //   ion.spinner.stop();
+    // }
     switch (config[method].log_metod) {
         case 'trace': {
             ion.trace(data);
@@ -161,8 +161,8 @@ function _use_ion_method(method, data) {
             break;
         }
     }
-    if (was_spinning) {
-        ion.spinner.start();
-    }
+    // if (was_spinning) {
+    //   ion.spinner.start();
+    // }
 }
 //# sourceMappingURL=main.js.map

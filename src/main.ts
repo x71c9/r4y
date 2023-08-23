@@ -156,10 +156,10 @@ function _clean_chunk(chunk: string): string {
 // }
 
 function _use_ion_method(method: types.Method, data: any) {
-  const was_spinning = ion.spinner.is_spinning();
-  if (was_spinning) {
-    ion.spinner.stop();
-  }
+  // const was_spinning = ion.spinner.is_spinning();
+  // if (was_spinning) {
+  //   ion.spinner.stop();
+  // }
   switch (config[method].log_metod) {
     case 'trace': {
       ion.trace(data);
@@ -190,7 +190,7 @@ function _use_ion_method(method: types.Method, data: any) {
       break;
     }
   }
-  if (was_spinning) {
-    ion.spinner.start();
-  }
+  // if (was_spinning) {
+  //   ion.spinner.start();
+  // }
 }
