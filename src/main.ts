@@ -15,7 +15,9 @@ import {config} from './config/config.js';
 
 const exe = promisify(cp.exec);
 
-type ExecuteOptions = {} & LogOption;
+type ExecuteOptions = {
+  cwd?: string;
+} & LogOption;
 
 export async function execute(
   command: string,
@@ -27,7 +29,7 @@ export async function execute(
   } else {
     _use_ion_method(types.METHOD.execute, command);
   }
-  const response = await exe(command);
+  const response = await exe(command, {cwd: options?.cwd});
   const trimmed_response = response.stdout.trim();
   if (options?.spin === true) {
     ion.spinner.stop();

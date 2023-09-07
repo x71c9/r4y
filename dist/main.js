@@ -20,7 +20,7 @@ export async function execute(command, options) {
     else {
         _use_ion_method(types.METHOD.execute, command);
     }
-    const response = await exe(command);
+    const response = await exe(command, { cwd: options === null || options === void 0 ? void 0 : options.cwd });
     const trimmed_response = response.stdout.trim();
     if ((options === null || options === void 0 ? void 0 : options.spin) === true) {
         ion.spinner.stop();

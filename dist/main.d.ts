@@ -5,7 +5,9 @@
  * @packageDocumentation
  *
  */
-type ExecuteOptions = {} & LogOption;
+type ExecuteOptions = {
+    cwd?: string;
+} & LogOption;
 export declare function execute(command: string, options?: Partial<ExecuteOptions>): Promise<any>;
 type Stdio = 'pipe' | 'overlapped' | 'ignore' | 'inherit';
 type SpawnOption = {
