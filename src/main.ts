@@ -93,7 +93,10 @@ export async function spawn(command: string, options?: Partial<SpawnOption>) {
           ion.fail(
             `Child process exited with code ${code} and signal ${signal}`
           );
-          reject();
+          const err = new Error(
+            `Child process closed with a code different than 0`
+          );
+          reject(err);
         }
       }
     });
@@ -111,7 +114,10 @@ export async function spawn(command: string, options?: Partial<SpawnOption>) {
           ion.fail(
             `Child process exited with code ${code} and signal ${signal}`
           );
-          reject();
+          const err = new Error(
+            `Child process exited with a code different than 0`
+          );
+          reject(err);
         }
       }
     });
