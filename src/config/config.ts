@@ -9,10 +9,12 @@
 import * as types from '../types/index.js';
 
 export const config: types.Config = {
+  debug: false,
+  spin: false,
   execute: {
-    log_metod: 'trace',
+    log_method: 'trace',
   },
   spawn: {
-    log_metod: 'trace',
+    log_method: 'trace',
   },
 };

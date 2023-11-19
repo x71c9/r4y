@@ -9,11 +9,18 @@
 import {ObjectValue} from './utils.js';
 
 export type MethodConfig = {
-  log_metod: LogMethod;
+  log_method: LogMethod;
 };
 
 export type Config = {
+  debug: boolean;
+  spin: boolean;
+} & {
   [k in Method]: MethodConfig;
+};
+
+export type LogOption = {
+  spin: boolean;
 };
 
 export const METHOD = {

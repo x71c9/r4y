@@ -5,10 +5,16 @@
  */
 
 import ray from './index.js';
+ray.config.set({
+  debug: true,
+  spin: false,
+});
 
 async function main() {
-  const response = await ray.spawn('ls');
-  console.log(response);
+  await ray.execute('sleep 3');
+
+  // console.log(response);
+  await ray.spawn('sleep 2');
 }
 
 main();

@@ -6,8 +6,10 @@
  *
  */
 
+import ion from 'i0n';
 import * as types from '../types/index.js';
 import {config} from '../config/config.js';
+import {log} from '../log/index.js';
 
 type DeepPartial<T> = {
   [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K];
@@ -24,6 +26,9 @@ export function set(params: ConfigParams) {
     return;
   }
   _merge_defaults(config, params);
+  if (config.debug === true) {
+    log.params.log_level = ion.LOG_LEVEL.TRACE;
+  }
 }
 
 function _merge_defaults<T>(defaults: T, partial: DeepPartial<T>) {
