@@ -1141,10 +1141,10 @@ husky@^8.0.3:
   resolved "https://registry.yarnpkg.com/husky/-/husky-8.0.3.tgz#4936d7212e46d1dea28fef29bb3a108872cd9184"
   integrity sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==
 
-i0n@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/i0n/-/i0n-0.4.1.tgz#05f700e8006e1fbbfea9ba1c055403bae6d5e4d7"
-  integrity sha512-zBP4s1aQ72qRGsEfv5tOaibkZ+njRrjQrukOQqYI8vO3OdcHmhkRXO15mygvC8Yhs+5SUL85xP/CRWgoVyUiQg==
+i0n@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/i0n/-/i0n-0.7.0.tgz#e5cbbd1098d5cdc8bfdc6a2bdd5f556519735b4b"
+  integrity sha512-JuyYexJTTKJyUPHgA1yT/gMGN4njyOC7C0DuZwJ8/xlr7BuVf1K7iQ/QLsTmdIE8HyY4/BCKyLfCtCWxy+ExDg==
   dependencies:
     ora "^7.0.1"
 
