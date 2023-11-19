@@ -1,3 +1,4 @@
+"use strict";
 /**
  *
  * Main module
@@ -5,17 +6,45 @@
  * @packageDocumentation
  *
  */
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.spawn = exports.execute = void 0;
 // import crypto from 'crypto';
-import { promisify } from 'util';
-import cp from 'child_process';
-import ion from 'i0n';
-import * as types from './types/index.js';
-import { config } from './config/config.js';
-const exe = promisify(cp.exec);
-export async function execute(command, options) {
+const util_1 = require("util");
+const child_process_1 = __importDefault(require("child_process"));
+const i0n_1 = __importDefault(require("i0n"));
+const types = __importStar(require("./types/index.js"));
+const config_js_1 = require("./config/config.js");
+const exe = (0, util_1.promisify)(child_process_1.default.exec);
+async function execute(command, options) {
     if (options && options.spin === true) {
-        ion.spinner.text(command);
-        ion.spinner.start();
+        i0n_1.default.spinner.text(command);
+        i0n_1.default.spinner.start();
     }
     else {
         _use_ion_method(types.METHOD.execute, command);
@@ -23,15 +52,16 @@ export async function execute(command, options) {
     const response = await exe(command, { cwd: options === null || options === void 0 ? void 0 : options.cwd });
     const trimmed_response = response.stdout.trim();
     if ((options === null || options === void 0 ? void 0 : options.spin) === true) {
-        ion.spinner.stop();
+        i0n_1.default.spinner.stop();
     }
     return trimmed_response;
 }
-export async function spawn(command, options) {
+exports.execute = execute;
+async function spawn(command, options) {
     return await new Promise((resolve, reject) => {
         // const id = _generate_unique_id();
         const spin = (options === null || options === void 0 ? void 0 : options.spin) === false ? false : true;
-        const child = cp.spawn(command, {
+        const child = child_process_1.default.spawn(command, {
             stdio: (options === null || options === void 0 ? void 0 : options.stdio) || 'inherit',
             shell: (options === null || options === void 0 ? void 0 : options.shell) || true,
             cwd: options === null || options === void 0 ? void 0 : options.cwd,
@@ -48,54 +78,55 @@ export async function spawn(command, options) {
         }
         child.on('error', (err) => {
             if (spin) {
-                ion.spinner.stop();
+                i0n_1.default.spinner.stop();
             }
-            ion.fail(err.message);
-            ion.error(err);
+            i0n_1.default.fail(err.message);
+            i0n_1.default.error(err);
         });
         // This `close` event is different than the `exit` event because multiple
         // child processes might share the same stdio streams and so one child
         // process exiting does not mean that the streams got closed.
         child.on('close', (code, signal) => {
             if (spin) {
-                ion.spinner.stop();
+                i0n_1.default.spinner.stop();
             }
             switch (code) {
                 case 0: {
-                    ion.success(`Child process [${child.pid}] successfully closed.`);
+                    i0n_1.default.success(`Child process [${child.pid}] successfully closed.`);
                     resolve(true);
                     break;
                 }
                 default: {
-                    ion.fail(`Child process exited with code ${code} and signal ${signal}`);
+                    i0n_1.default.fail(`Child process exited with code ${code} and signal ${signal}`);
                     reject();
                 }
             }
         });
         child.on('exit', (code, signal) => {
             if (spin) {
-                ion.spinner.stop();
+                i0n_1.default.spinner.stop();
             }
             switch (code) {
                 case 0: {
-                    ion.success(`Child process [${child.pid}] successfully exit.`);
+                    i0n_1.default.success(`Child process [${child.pid}] successfully exit.`);
                     resolve(true);
                     break;
                 }
                 default: {
-                    ion.fail(`Child process exited with code ${code} and signal ${signal}`);
+                    i0n_1.default.fail(`Child process exited with code ${code} and signal ${signal}`);
                     reject();
                 }
             }
         });
     });
 }
+exports.spawn = spawn;
 function _process_std(options) {
     return (chunk) => {
         if (options === null || options === void 0 ? void 0 : options.spin) {
             const one_line = _one_line(chunk);
-            ion.spinner.text(one_line);
-            ion.spinner.start();
+            i0n_1.default.spinner.text(one_line);
+            i0n_1.default.spinner.start();
         }
         else {
             const splitted_chunk = chunk.split('\n');
@@ -131,33 +162,33 @@ function _use_ion_method(method, data) {
     // if (was_spinning) {
     //   ion.spinner.stop();
     // }
-    switch (config[method].log_metod) {
+    switch (config_js_1.config[method].log_metod) {
         case 'trace': {
-            ion.trace(data);
+            i0n_1.default.trace(data);
             break;
         }
         case 'debug': {
-            ion.debug(data);
+            i0n_1.default.debug(data);
             break;
         }
         case 'info': {
-            ion.info(data);
+            i0n_1.default.info(data);
             break;
         }
         case 'warn': {
-            ion.warn(data);
+            i0n_1.default.warn(data);
             break;
         }
         case 'error': {
-            ion.error(data);
+            i0n_1.default.error(data);
             break;
         }
         case 'success': {
-            ion.success(data);
+            i0n_1.default.success(data);
             break;
         }
         case 'fail': {
-            ion.fail(data);
+            i0n_1.default.fail(data);
             break;
         }
     }

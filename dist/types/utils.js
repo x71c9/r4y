@@ -1,3 +1,4 @@
+"use strict";
 /**
  *
  * Utils types module
@@ -5,5 +6,5 @@
  * @packageDocumentation
  *
  */
-export {};
+Object.defineProperty(exports, "__esModule", { value: true });
 //# sourceMappingURL=utils.js.map

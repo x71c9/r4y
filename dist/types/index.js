@@ -1,3 +1,4 @@
+"use strict";
 /**
  *
  * Types index module
@@ -5,11 +6,13 @@
  * @packageDocumentation
  *
  */
-export const METHOD = {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LOG_METHOD = exports.METHOD = void 0;
+exports.METHOD = {
     execute: 'execute',
     spawn: 'spawn',
 };
-export const LOG_METHOD = {
+exports.LOG_METHOD = {
     trace: 'trace',
     debug: 'debug',
     info: 'info',
