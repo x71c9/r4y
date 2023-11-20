@@ -7,8 +7,8 @@
  */
 
 import cp from 'child_process';
-import {promisify} from 'util';
 import crypto from 'crypto';
+import {promisify} from 'util';
 import {log} from './log/index.js';
 import * as types from './types/index.js';
 import * as common from './common.js';
@@ -50,6 +50,6 @@ export async function execute(
 function _generate_unique_id(): string {
   const timestamp = Date.now().toString();
   const hash = crypto.createHash('sha256').update(timestamp).digest('hex');
-  const unique_id = hash.slice(0, 4).toUpperCase();
+  const unique_id = hash.slice(0, 6).toUpperCase();
   return unique_id;
 }

@@ -13,6 +13,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.log = void 0;
 const i0n_1 = __importDefault(require("i0n"));
 exports.log = i0n_1.default.create({
-    log_level: i0n_1.default.LOG_LEVEL.NONE
+    log_level: i0n_1.default.LOG_LEVEL.NONE,
 });
 //# sourceMappingURL=index.js.map

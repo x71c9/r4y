@@ -11,7 +11,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const index_js_1 = __importDefault(require("./index.js"));
 index_js_1.default.config.set({
     debug: true,
-    spin: false
+    spin: false,
 });
 async function main() {
     await index_js_1.default.execute('sleep 3');

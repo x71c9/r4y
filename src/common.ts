@@ -7,11 +7,11 @@
  */
 
 import * as types from './types/index.js';
-import {config} from './config/config.js';
+import {weights} from './config/index.js';
 import {log} from './log/index.js';
 
-export function use_ion_method(method: types.Method, data: any) {
-  switch (config[method].log_method) {
+export function use_ion_method(log_method: types.LogMethod, data: any) {
+  switch (log_method) {
     case 'trace': {
       log.trace(data);
       break;
@@ -32,14 +32,6 @@ export function use_ion_method(method: types.Method, data: any) {
       log.error(data);
       break;
     }
-    case 'success': {
-      log.success(data);
-      break;
-    }
-    case 'fail': {
-      log.fail(data);
-      break;
-    }
   }
 }
 
@@ -50,5 +42,5 @@ export function resolve_spin(spin?: boolean): boolean {
   if (spin === false) {
     return true;
   }
-  return config.spin;
+  return weights.params.spin;
 }

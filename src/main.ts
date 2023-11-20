@@ -6,8 +6,8 @@
  *
  */
 
-import * as config from './config/index.js';
-export {config};
+import {set} from './config/index.js';
+export const config = {set};
 
 export * from './execute.js';
 export * from './spawn.js';

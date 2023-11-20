@@ -9,6 +9,7 @@
 import cp from 'child_process';
 import * as types from './types/index.js';
 import {log} from './log/index.js';
+import {weights} from './config/index.js';
 import * as common from './common.js';
 
 type Stdio = 'pipe' | 'overlapped' | 'ignore' | 'inherit';
@@ -38,11 +39,17 @@ export async function spawn(command: string, options?: Partial<SpawnOption>) {
     log.spinner.text(id_command);
     if (child.stdout) {
       child.stdout.setEncoding('utf8');
-      child.stdout.on('data', _process_std(options));
+      child.stdout.on(
+        'data',
+        _process_std(weights.params.spawn.log.stdout, options)
+      );
     }
     if (child.stderr) {
       child.stderr.setEncoding('utf8');
-      child.stderr.on('data', _process_std(options));
+      child.stderr.on(
+        'data',
+        _process_std(weights.params.spawn.log.stderr, options)
+      );
     }
     child.on('error', (err) => {
       if (do_spin) {
@@ -99,7 +106,10 @@ export async function spawn(command: string, options?: Partial<SpawnOption>) {
   });
 }
 
-function _process_std(options?: Partial<SpawnOption>) {
+function _process_std(
+  log_method: types.LogMethod,
+  options?: Partial<SpawnOption>
+) {
   return (chunk: string) => {
     if (options?.spin) {
       const one_line = _one_line(chunk);
@@ -112,7 +122,7 @@ function _process_std(options?: Partial<SpawnOption>) {
         if (clean_chunk === '') {
           continue;
         }
-        common.use_ion_method(types.METHOD.spawn, clean_chunk);
+        common.use_ion_method(log_method, clean_chunk);
       }
     }
   };

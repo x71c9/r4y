@@ -35,8 +35,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.execute = void 0;
 const child_process_1 = __importDefault(require("child_process"));
-const util_1 = require("util");
 const crypto_1 = __importDefault(require("crypto"));
+const util_1 = require("util");
 const index_js_1 = require("./log/index.js");
 const common = __importStar(require("./common.js"));
 const exe = (0, util_1.promisify)(child_process_1.default.exec);
@@ -69,7 +69,7 @@ exports.execute = execute;
 function _generate_unique_id() {
     const timestamp = Date.now().toString();
     const hash = crypto_1.default.createHash('sha256').update(timestamp).digest('hex');
-    const unique_id = hash.slice(0, 4).toUpperCase();
+    const unique_id = hash.slice(0, 6).toUpperCase();
     return unique_id;
 }
 //# sourceMappingURL=execute.js.map

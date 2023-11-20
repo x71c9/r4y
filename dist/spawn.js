@@ -35,8 +35,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.spawn = void 0;
 const child_process_1 = __importDefault(require("child_process"));
-const types = __importStar(require("./types/index.js"));
 const index_js_1 = require("./log/index.js");
+const index_js_2 = require("./config/index.js");
 const common = __importStar(require("./common.js"));
 async function spawn(command, options) {
     return await new Promise((resolve, reject) => {
@@ -56,11 +56,11 @@ async function spawn(command, options) {
         index_js_1.log.spinner.text(id_command);
         if (child.stdout) {
             child.stdout.setEncoding('utf8');
-            child.stdout.on('data', _process_std(options));
+            child.stdout.on('data', _process_std(index_js_2.weights.params.spawn.log.stdout, options));
         }
         if (child.stderr) {
             child.stderr.setEncoding('utf8');
-            child.stderr.on('data', _process_std(options));
+            child.stderr.on('data', _process_std(index_js_2.weights.params.spawn.log.stderr, options));
         }
         child.on('error', (err) => {
             if (do_spin) {
@@ -109,7 +109,7 @@ async function spawn(command, options) {
     });
 }
 exports.spawn = spawn;
-function _process_std(options) {
+function _process_std(log_method, options) {
     return (chunk) => {
         if (options === null || options === void 0 ? void 0 : options.spin) {
             const one_line = _one_line(chunk);
@@ -123,7 +123,7 @@ function _process_std(options) {
                 if (clean_chunk === '') {
                     continue;
                 }
-                common.use_ion_method(types.METHOD.spawn, clean_chunk);
+                common.use_ion_method(log_method, clean_chunk);
             }
         }
     };

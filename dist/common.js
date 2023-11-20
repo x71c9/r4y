@@ -8,36 +8,28 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.resolve_spin = exports.use_ion_method = void 0;
-const config_js_1 = require("./config/config.js");
-const index_js_1 = require("./log/index.js");
-function use_ion_method(method, data) {
-    switch (config_js_1.config[method].log_method) {
+const index_js_1 = require("./config/index.js");
+const index_js_2 = require("./log/index.js");
+function use_ion_method(log_method, data) {
+    switch (log_method) {
         case 'trace': {
-            index_js_1.log.trace(data);
+            index_js_2.log.trace(data);
             break;
         }
         case 'debug': {
-            index_js_1.log.debug(data);
+            index_js_2.log.debug(data);
             break;
         }
         case 'info': {
-            index_js_1.log.info(data);
+            index_js_2.log.info(data);
             break;
         }
         case 'warn': {
-            index_js_1.log.warn(data);
+            index_js_2.log.warn(data);
             break;
         }
         case 'error': {
-            index_js_1.log.error(data);
-            break;
-        }
-        case 'success': {
-            index_js_1.log.success(data);
-            break;
-        }
-        case 'fail': {
-            index_js_1.log.fail(data);
+            index_js_2.log.error(data);
             break;
         }
     }
@@ -50,7 +42,7 @@ function resolve_spin(spin) {
     if (spin === false) {
         return true;
     }
-    return config_js_1.config.spin;
+    return index_js_1.weights.params.spin;
 }
 exports.resolve_spin = resolve_spin;
 //# sourceMappingURL=common.js.map

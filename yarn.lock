@@ -2234,6 +2234,11 @@ vscode-uri@^3.0.3:
   resolved "https://registry.yarnpkg.com/vscode-uri/-/vscode-uri-3.0.8.tgz#1770938d3e72588659a172d0fd4642780083ff9f"
   integrity sha512-AyFQ0EVmsOZOlAnxoFOGOq1SQDWAB7C6aqMGS23svWAllfOaxbuFvcT8D1i8z3Gyn8fraVeZNNmN6e9bxxXkKw==
 
+w3i@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/w3i/-/w3i-0.3.0.tgz#5408c0983b6c018df81451b880c767174ccb2567"
+  integrity sha512-p6+6aG1fneUXbTQf+F33+10mRQyOo0bi30pPyVoRSqEGHnVtB3ydg+2GCgHUuSp6k7UeQAc0uM/Vk980uay6Jw==
+
 wcwidth@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/wcwidth/-/wcwidth-1.0.1.tgz#f0b0dcf915bc5ff1528afadb2c0e17b532da2fe8"

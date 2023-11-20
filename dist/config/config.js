@@ -8,14 +8,5 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.config = void 0;
-exports.config = {
-    debug: false,
-    spin: false,
-    execute: {
-        log_method: 'trace',
-    },
-    spawn: {
-        log_method: 'trace',
-    },
-};
+exports.config = {};
 //# sourceMappingURL=config.js.map
