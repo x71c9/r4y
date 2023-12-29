@@ -9,9 +9,9 @@
 import cp from 'child_process';
 import crypto from 'crypto';
 import {promisify} from 'util';
-import {log} from './log/index.js';
-import * as types from './types/index.js';
-import * as common from './common.js';
+import {log} from './log/index';
+import * as types from './types/index';
+import * as common from './common';
 
 type ExecuteOptions = {
   cwd?: string;

@@ -5,7 +5,7 @@
  * @packageDocumentation
  *
  */
-import * as types from './types/index.js';
+import * as types from './types/index';
 type Stdio = 'pipe' | 'overlapped' | 'ignore' | 'inherit';
 type SpawnOption = {
     stdio: Stdio | Stdio[];

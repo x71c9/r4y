@@ -5,8 +5,9 @@
  * @packageDocumentation
  *
  */
+import { set } from './config/index';
 export declare const config: {
-    set: (params: import("w3i").DeepPartial<import("./types/index.js").Config>) => void;
+    set: typeof set;
 };
-export * from './execute.js';
-export * from './spawn.js';
+export * from './execute';
+export * from './spawn';

@@ -7,10 +7,10 @@
  */
 
 import cp from 'child_process';
-import * as types from './types/index.js';
-import {log} from './log/index.js';
-import {weights} from './config/index.js';
-import * as common from './common.js';
+import * as types from './types/index';
+import {log} from './log/index';
+import {weights} from './config/index';
+import * as common from './common';
 
 type Stdio = 'pipe' | 'overlapped' | 'ignore' | 'inherit';
 

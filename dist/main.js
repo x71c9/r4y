@@ -22,8 +22,8 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.config = void 0;
-const index_js_1 = require("./config/index.js");
-exports.config = { set: index_js_1.set };
-__exportStar(require("./execute.js"), exports);
-__exportStar(require("./spawn.js"), exports);
+const index_1 = require("./config/index");
+exports.config = { set: index_1.set };
+__exportStar(require("./execute"), exports);
+__exportStar(require("./spawn"), exports);
 //# sourceMappingURL=main.js.map

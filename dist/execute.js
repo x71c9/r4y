@@ -37,31 +37,31 @@ exports.execute = void 0;
 const child_process_1 = __importDefault(require("child_process"));
 const crypto_1 = __importDefault(require("crypto"));
 const util_1 = require("util");
-const index_js_1 = require("./log/index.js");
-const common = __importStar(require("./common.js"));
+const index_1 = require("./log/index");
+const common = __importStar(require("./common"));
 const exe = (0, util_1.promisify)(child_process_1.default.exec);
 async function execute(command, options) {
     const id = _generate_unique_id();
     const do_spin = common.resolve_spin(options === null || options === void 0 ? void 0 : options.spin);
     const id_command = `[${id}] ${command}`;
-    index_js_1.log.trace(id_command);
+    index_1.log.trace(id_command);
     if (do_spin) {
-        index_js_1.log.spinner.text(command);
-        index_js_1.log.spinner.start();
+        index_1.log.spinner.text(command);
+        index_1.log.spinner.start();
     }
     try {
         const response = await exe(command, { cwd: options === null || options === void 0 ? void 0 : options.cwd });
         const trimmed_response = response.stdout.trim();
         if (do_spin) {
-            index_js_1.log.spinner.stop();
+            index_1.log.spinner.stop();
         }
-        index_js_1.log.success(`Command [${id}] successfully terminated.`);
+        index_1.log.success(`Command [${id}] successfully terminated.`);
         return trimmed_response;
     }
     catch (e) {
         const err = e;
         let err_message = typeof err.message === 'string' ? `. ${err.message}` : '';
-        index_js_1.log.error(`Command threw an error${err_message}`);
+        index_1.log.error(`Command threw an error${err_message}`);
         throw e;
     }
 }

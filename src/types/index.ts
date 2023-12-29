@@ -6,7 +6,7 @@
  *
  */
 
-import {ObjectValue} from './utils.js';
+import {ObjectValue} from './utils';
 
 export type Config = {
   debug: boolean;

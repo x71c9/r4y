@@ -6,9 +6,9 @@
  *
  */
 
-import * as types from './types/index.js';
-import {weights} from './config/index.js';
-import {log} from './log/index.js';
+import * as types from './types/index';
+import {weights} from './config/index';
+import {log} from './log/index';
 
 export function use_ion_method(log_method: types.LogMethod, data: any) {
   switch (log_method) {

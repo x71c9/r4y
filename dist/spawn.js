@@ -35,15 +35,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.spawn = void 0;
 const child_process_1 = __importDefault(require("child_process"));
-const index_js_1 = require("./log/index.js");
-const index_js_2 = require("./config/index.js");
-const common = __importStar(require("./common.js"));
+const index_1 = require("./log/index");
+const index_2 = require("./config/index");
+const common = __importStar(require("./common"));
 async function spawn(command, options) {
     return await new Promise((resolve, reject) => {
         const do_spin = common.resolve_spin(options === null || options === void 0 ? void 0 : options.spin);
         if (do_spin) {
-            index_js_1.log.spinner.text(command);
-            index_js_1.log.spinner.start();
+            index_1.log.spinner.text(command);
+            index_1.log.spinner.start();
         }
         const child = child_process_1.default.spawn(command, {
             stdio: (options === null || options === void 0 ? void 0 : options.stdio) || 'inherit',
@@ -52,38 +52,38 @@ async function spawn(command, options) {
             detached: options === null || options === void 0 ? void 0 : options.detached,
         });
         const id_command = `[${child.pid}] ${command}`;
-        index_js_1.log.trace(id_command);
-        index_js_1.log.spinner.text(id_command);
+        index_1.log.trace(id_command);
+        index_1.log.spinner.text(id_command);
         if (child.stdout) {
             child.stdout.setEncoding('utf8');
-            child.stdout.on('data', _process_std(index_js_2.weights.params.spawn.log.stdout, options));
+            child.stdout.on('data', _process_std(index_2.weights.params.spawn.log.stdout, options));
         }
         if (child.stderr) {
             child.stderr.setEncoding('utf8');
-            child.stderr.on('data', _process_std(index_js_2.weights.params.spawn.log.stderr, options));
+            child.stderr.on('data', _process_std(index_2.weights.params.spawn.log.stderr, options));
         }
         child.on('error', (err) => {
             if (do_spin) {
-                index_js_1.log.spinner.stop();
+                index_1.log.spinner.stop();
             }
-            index_js_1.log.fail(err.message);
-            index_js_1.log.error(err);
+            index_1.log.fail(err.message);
+            index_1.log.error(err);
         });
         // This `close` event is different than the `exit` event because multiple
         // child processes might share the same stdio streams and so one child
         // process exiting does not mean that the streams got closed.
         child.on('close', (code, signal) => {
             if (do_spin) {
-                index_js_1.log.spinner.stop();
+                index_1.log.spinner.stop();
             }
             switch (code) {
                 case 0: {
-                    index_js_1.log.success(`Child process [${child.pid}] successfully closed.`);
+                    index_1.log.success(`Child process [${child.pid}] successfully closed.`);
                     resolve(true);
                     break;
                 }
                 default: {
-                    index_js_1.log.fail(`Child process exited with code ${code} and signal ${signal}`);
+                    index_1.log.fail(`Child process exited with code ${code} and signal ${signal}`);
                     const err = new Error(`Child process closed with a code different than 0`);
                     reject(err);
                 }
@@ -91,16 +91,16 @@ async function spawn(command, options) {
         });
         child.on('exit', (code, signal) => {
             if (do_spin) {
-                index_js_1.log.spinner.stop();
+                index_1.log.spinner.stop();
             }
             switch (code) {
                 case 0: {
-                    index_js_1.log.success(`Child process [${child.pid}] successfully exit.`);
+                    index_1.log.success(`Child process [${child.pid}] successfully exit.`);
                     resolve(true);
                     break;
                 }
                 default: {
-                    index_js_1.log.fail(`Child process exited with code ${code} and signal ${signal}`);
+                    index_1.log.fail(`Child process exited with code ${code} and signal ${signal}`);
                     const err = new Error(`Child process exited with a code different than 0`);
                     reject(err);
                 }
@@ -113,8 +113,8 @@ function _process_std(log_method, options) {
     return (chunk) => {
         if (options === null || options === void 0 ? void 0 : options.spin) {
             const one_line = _one_line(chunk);
-            index_js_1.log.spinner.text(one_line);
-            index_js_1.log.spinner.start();
+            index_1.log.spinner.text(one_line);
+            index_1.log.spinner.start();
         }
         else {
             const splitted_chunk = chunk.split('\n');

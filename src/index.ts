@@ -6,5 +6,5 @@
  *
  */
 
-import * as r4y from './main.js';
+import * as r4y from './main';
 export default r4y;

@@ -13,7 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.set = exports.weights = void 0;
 const i0n_1 = __importDefault(require("i0n"));
 const w3i_1 = require("w3i");
-const index_js_1 = require("../log/index.js");
+const index_1 = require("../log/index");
 exports.weights = new w3i_1.Weights({
     debug: false,
     spin: false,
@@ -21,14 +21,14 @@ exports.weights = new w3i_1.Weights({
         log: {
             stdout: 'trace',
             stderr: 'error',
-        }
+        },
     },
 });
-const set = (params) => {
+function set(params) {
     exports.weights.set(params);
     if (params.debug === true) {
-        index_js_1.log.params.log_level = i0n_1.default.LOG_LEVEL.TRACE;
+        index_1.log.params.log_level = i0n_1.default.LOG_LEVEL.TRACE;
     }
-};
+}
 exports.set = set;
 //# sourceMappingURL=index.js.map
