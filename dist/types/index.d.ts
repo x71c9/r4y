@@ -5,6 +5,7 @@
  * @packageDocumentation
  *
  */
+import ion from 'i0n';
 import { ObjectValue } from './utils';
 export type Config = {
     debug: boolean;
@@ -15,6 +16,7 @@ export type Config = {
             stderr: LogMethod;
         };
     };
+    spinner: ion.Spinner;
 };
 export type LogOption = {
     spin: boolean;

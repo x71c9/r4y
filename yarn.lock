@@ -461,9 +461,9 @@ cli-cursor@^4.0.0:
     restore-cursor "^4.0.0"
 
 cli-spinners@^2.5.0:
-  version "2.9.1"
-  resolved "https://registry.yarnpkg.com/cli-spinners/-/cli-spinners-2.9.1.tgz#9c0b9dad69a6d47cbb4333c14319b060ed395a35"
-  integrity sha512-jHgecW0pxkonBJdrKsqxgRX9AcG+u/5k0Q7WPDfi8AogLAdwxEkyYYNWwZ5GvVFoFx2uiY1eNcSK00fh+1+FyQ==
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/cli-spinners/-/cli-spinners-2.9.2.tgz#1773a8f4b9c4d6ac31563df53b3fc1d79462fe41"
+  integrity sha512-ywqV+5MmyL4E7ybXgKys4DugZbX0FC6LnwrhjuykIjnK9k8OQacQ7axGKnjDXWNhns0xot3bZI5h55H8yo9cJg==
 
 cli-truncate@^3.1.0:
   version "3.1.0"
@@ -1155,12 +1155,13 @@ husky@^8.0.3:
   resolved "https://registry.yarnpkg.com/husky/-/husky-8.0.3.tgz#4936d7212e46d1dea28fef29bb3a108872cd9184"
   integrity sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==
 
-i0n@^0.7.1:
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/i0n/-/i0n-0.7.1.tgz#52d4eedf82b92b8a66d8b2f25dc054931adcba5a"
-  integrity sha512-xhzZAk1EHaVeqEMxzWfPsZr+CPjVat3nE5Sm+crrBfSMaAaVd78A4Fjl3pIaxsOCY+LPqUH4CpQMGjTv8rWsvw==
+i0n@^0.8.1:
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/i0n/-/i0n-0.8.1.tgz#fbf00f27a8df4ca6e64dae9e0439d65fd965d796"
+  integrity sha512-nyG/DRlr39tEjdEj0FOwLZnWNl6b/anlUa18WAmF4wiqa4MX6n8kJoPIkER4VbfagWJ+MPZ5962tJLx54yd+TA==
   dependencies:
     ora-classic "^5.4.2"
+    w3i "^0.2.0"
 
 ieee754@^1.1.13:
   version "1.2.1"
@@ -2233,6 +2234,11 @@ vscode-uri@^3.0.3:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/vscode-uri/-/vscode-uri-3.0.8.tgz#1770938d3e72588659a172d0fd4642780083ff9f"
   integrity sha512-AyFQ0EVmsOZOlAnxoFOGOq1SQDWAB7C6aqMGS23svWAllfOaxbuFvcT8D1i8z3Gyn8fraVeZNNmN6e9bxxXkKw==
+
+w3i@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/w3i/-/w3i-0.2.0.tgz#7ddad95c1b0ddb6f22570baa8b8e9e71abb142bf"
+  integrity sha512-p2cwM97fdLTe2LPsCGZFGHkXTUFIGWOmIIZHNtWYt8P+VyLDaW+qtTxgVtnhuPSrtK5b+KynqUN6sha/3a9oJg==
 
 w3i@^0.3.0:
   version "0.3.0"

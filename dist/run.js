@@ -9,9 +9,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_js_1 = __importDefault(require("./index.js"));
+const i0n_1 = __importDefault(require("i0n"));
+const log = i0n_1.default.create({});
 index_js_1.default.config.set({
     debug: true,
-    spin: false,
+    spin: true,
+    spinner: log.spinner
 });
 async function main() {
     await index_js_1.default.execute('sleep 3');
