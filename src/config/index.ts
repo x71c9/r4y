@@ -13,6 +13,7 @@ import {log} from '../log/index';
 
 export const weights = new Weights<types.Config>({
   debug: false,
+  hide_error: false,
   spin: false,
   spawn: {
     log: {

@@ -66,8 +66,10 @@ async function spawn(command, options) {
             if (do_spin) {
                 index_1.log.spinner.stop();
             }
-            index_1.log.fail(err.message);
-            index_1.log.error(err);
+            if (index_2.weights.params.hide_error !== true) {
+                index_1.log.fail(err.message);
+                index_1.log.error(err);
+            }
         });
         // This `close` event is different than the `exit` event because multiple
         // child processes might share the same stdio streams and so one child

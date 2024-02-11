@@ -14,7 +14,7 @@ const log = i0n_1.default.create({});
 index_js_1.default.config.set({
     debug: true,
     spin: true,
-    spinner: log.spinner
+    spinner: log.spinner,
 });
 async function main() {
     await index_js_1.default.execute('sleep 3');

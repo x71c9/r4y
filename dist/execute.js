@@ -38,6 +38,7 @@ const child_process_1 = __importDefault(require("child_process"));
 const crypto_1 = __importDefault(require("crypto"));
 const util_1 = require("util");
 const index_1 = require("./log/index");
+const index_2 = require("./config/index");
 const common = __importStar(require("./common"));
 const exe = (0, util_1.promisify)(child_process_1.default.exec);
 async function execute(command, options) {
@@ -61,7 +62,9 @@ async function execute(command, options) {
     catch (e) {
         const err = e;
         let err_message = typeof err.message === 'string' ? `. ${err.message}` : '';
-        index_1.log.error(`Command threw an error${err_message}`);
+        if (index_2.weights.params.hide_error !== true) {
+            index_1.log.error(`Command threw an error${err_message}`);
+        }
         throw e;
     }
 }

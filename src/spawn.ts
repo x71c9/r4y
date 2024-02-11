@@ -55,8 +55,10 @@ export async function spawn(command: string, options?: Partial<SpawnOption>) {
       if (do_spin) {
         log.spinner.stop();
       }
-      log.fail(err.message);
-      log.error(err);
+      if (weights.params.hide_error !== true) {
+        log.fail(err.message);
+        log.error(err);
+      }
     });
     // This `close` event is different than the `exit` event because multiple
     // child processes might share the same stdio streams and so one child

@@ -16,6 +16,7 @@ const w3i_1 = require("w3i");
 const index_1 = require("../log/index");
 exports.weights = new w3i_1.Weights({
     debug: false,
+    hide_error: false,
     spin: false,
     spawn: {
         log: {
@@ -23,7 +24,7 @@ exports.weights = new w3i_1.Weights({
             stderr: 'error',
         },
     },
-    spinner: index_1.log.spinner
+    spinner: index_1.log.spinner,
 });
 function set(params) {
     /**

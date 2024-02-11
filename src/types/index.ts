@@ -11,6 +11,7 @@ import {ObjectValue} from './utils';
 
 export type Config = {
   debug: boolean;
+  hide_error: boolean;
   spin: boolean;
   spawn: {
     log: {

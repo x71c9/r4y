@@ -10,6 +10,7 @@ import cp from 'child_process';
 import crypto from 'crypto';
 import {promisify} from 'util';
 import {log} from './log/index';
+import {weights} from './config/index';
 import * as types from './types/index';
 import * as common from './common';
 
@@ -42,7 +43,9 @@ export async function execute(
   } catch (e) {
     const err = e as Error;
     let err_message = typeof err.message === 'string' ? `. ${err.message}` : '';
-    log.error(`Command threw an error${err_message}`);
+    if (weights.params.hide_error !== true) {
+      log.error(`Command threw an error${err_message}`);
+    }
     throw e;
   }
 }
