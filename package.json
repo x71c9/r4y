@@ -1,6 +1,6 @@
 {
   "name": "r4y",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "A NodeJS library for managing child processes",
   "main": "dist/index.js",
   "repository": "git@github.com:x71c9/r4y.git",
